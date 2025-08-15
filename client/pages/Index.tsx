@@ -148,7 +148,6 @@ const products = [
     price: "$45.97",
     rating: 5,
     reviewCount: 286,
-    outOfStock: true,
     image:
       "https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F936b74c9566f406ebebd96074d052d09?format=webp&width=800",
     walmartLink:
