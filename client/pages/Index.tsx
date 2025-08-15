@@ -811,24 +811,6 @@ export default function Index() {
                       </span>
                     </div>
 
-                    {/* Price Section - Prominent and bold */}
-                    <div className="space-y-1">
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-lg lg:text-xl font-black text-red-500">
-                          {pricing.salePrice}
-                        </span>
-                        <span className="text-sm lg:text-base text-gray-400 line-through">
-                          {pricing.regularPrice}
-                        </span>
-                      </div>
-                      <div className="text-xs lg:text-sm font-bold text-green-600">
-                        Save $
-                        {(
-                          parseFloat(pricing.regularPrice.replace("$", "")) -
-                          parseFloat(pricing.salePrice.replace("$", ""))
-                        ).toFixed(2)}
-                      </div>
-                    </div>
 
                     {/* Ratings - compact */}
                     {product.rating && (
