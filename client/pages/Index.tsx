@@ -751,15 +751,15 @@ export default function Index() {
                   key={product.id}
                   className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group hover:scale-[1.03] cursor-pointer relative"
                 >
-                  {/* Product Image - 70% of card area with 16px border radius */}
-                  <div className="relative h-[200px] lg:h-[220px] overflow-hidden rounded-t-2xl bg-gray-50">
+                  {/* Full Image Fill with White Background */}
+                  <div className="relative h-[240px] lg:h-[280px] overflow-hidden bg-white p-3 lg:p-4">
                     <img
-                      src={`${product.image}&quality=90`}
+                      src={`${product.image}&quality=95`}
                       alt={`${product.name} - Premium snack variety box with ${product.size} assorted treats perfect for gifting`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 drop-shadow-xl"
                       loading="lazy"
                       width="320"
-                      height="220"
+                      height="280"
                     />
 
                     {/* Discount Badge - corner placement */}
