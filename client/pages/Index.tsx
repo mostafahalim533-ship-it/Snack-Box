@@ -749,7 +749,7 @@ export default function Index() {
               return (
                 <div
                   key={product.id}
-                  className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-[1.02] cursor-pointer border border-gray-100"
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group hover:scale-[1.03] cursor-pointer relative"
                 >
                   {/* Product Image - 70% of card area with 16px border radius */}
                   <div className="relative h-[200px] lg:h-[220px] overflow-hidden rounded-t-2xl bg-gray-50">
