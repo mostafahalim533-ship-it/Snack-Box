@@ -769,7 +769,7 @@ export default function Index() {
 
                     {/* Popular Badge */}
                     {index === 1 && (
-                      <div className="absolute top-3 right-3 bg-orange-500 text-white px-2 py-1 rounded-xl text-xs font-bold shadow-lg">
+                      <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-2.5 py-1 rounded-xl text-xs font-bold shadow-xl">
                         🔥 Popular
                       </div>
                     )}
