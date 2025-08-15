@@ -835,7 +835,7 @@ export default function Index() {
                         e.stopPropagation();
                         setSelectedProduct(product);
                       }}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 lg:py-3 rounded-xl text-xs lg:text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-2.5 lg:py-3 rounded-xl text-xs lg:text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                     >
                       <Eye className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
                       View Details
