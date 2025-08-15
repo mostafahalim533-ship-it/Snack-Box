@@ -375,29 +375,43 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-blue-50">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-100 via-white to-blue-50 py-6 px-4 sm:py-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center">
+      {/* Enhanced Hero Section */}
+      <section className="relative overflow-hidden py-6 px-4 sm:py-20 min-h-[90vh] flex items-center">
+        {/* Advanced Geometric Background */}
+        <div className="absolute inset-0">
+          {/* Primary gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-white to-blue-50"></div>
+          {/* Geometric patterns */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-logo-green/20 to-green-400/20 rounded-full blur-xl"></div>
+            <div className="absolute top-40 right-20 w-24 h-24 bg-gradient-to-br from-orange-300/20 to-red-300/20 rounded-full blur-lg"></div>
+            <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-br from-purple-300/20 to-pink-300/20 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-40 right-10 w-28 h-28 bg-gradient-to-br from-yellow-300/20 to-orange-300/20 rounded-full blur-lg"></div>
+          </div>
+          {/* Overlay gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 w-full">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Content */}
             <div className="text-center lg:text-left fade-in">
-              {/* Logo with frame */}
-              <div className="flex justify-center lg:justify-start mb-2 sm:mb-5">
-                <div className="bg-gray-100 p-2 sm:p-4 rounded-lg sm:rounded-xl shadow-lg inline-block">
+              {/* Logo with enhanced frame */}
+              <div className="flex justify-center lg:justify-start mb-4 sm:mb-6">
+                <div className="bg-white/80 backdrop-blur-sm p-3 sm:p-5 rounded-2xl shadow-xl border border-gray-200/50 inline-block">
                   <img
                     src="https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd932fcd18414ba798762d622c2b825c?format=webp&width=400&quality=90"
                     alt="Gift A Snack - Premium Snack Box Company Logo"
-                    className="h-16 sm:h-20 lg:h-24 w-auto"
+                    className="h-16 sm:h-20 lg:h-28 w-auto"
                     loading="eager"
                     fetchPriority="high"
                     width="200"
-                    height="96"
+                    height="112"
                   />
                 </div>
               </div>
 
-              <div className="inline-flex items-center gap-2 bg-logo-green/10 text-logo-green px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold mb-2 sm:mb-4">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-logo-green/15 to-green-400/15 backdrop-blur-sm text-logo-green px-4 py-2 rounded-full text-xs sm:text-sm font-semibold mb-4 sm:mb-6 border border-logo-green/20">
                 <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="hidden sm:inline">
                   Premium Quality Guaranteed
@@ -405,17 +419,17 @@ export default function Index() {
                 <span className="sm:hidden">Premium Quality</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-heading-red mb-2 sm:mb-4 leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-heading-red mb-4 sm:mb-6 leading-tight tracking-tight">
                 <span className="block">Gift A Snack Box</span>
                 <span className="block text-snack-dark-blue">
                   Perfect Gift for
                 </span>
-                <span className="block bg-gradient-to-r from-logo-green to-green-500 bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-logo-green via-green-500 to-emerald-500 bg-clip-text text-transparent">
                   Snack Lovers
                 </span>
               </h1>
 
-              <p className="text-sm sm:text-base text-snack-dark-blue/80 mb-3 sm:mb-5 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-base sm:text-lg text-snack-dark-blue/80 mb-6 sm:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 <span className="hidden sm:inline">
                   Premium assortment of delicious snacks, beautifully packaged.
                   Perfect for gifts, office treats, and special occasions.
@@ -425,50 +439,70 @@ export default function Index() {
                 </span>
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-3 justify-center lg:justify-start mb-3 sm:mb-5">
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-4 justify-center lg:justify-start mb-6 sm:mb-8">
                 <button
                   onClick={scrollToProducts}
-                  className="bg-logo-green hover:bg-green-500 text-white font-bold px-6 sm:px-6 py-4 sm:py-3 rounded-xl text-base sm:text-base button-enhanced flex items-center justify-center gap-2 min-h-[56px] sm:min-h-[48px] touch-manipulation tap-highlight-none focus-visible-ring"
+                  className="group relative bg-gradient-to-r from-logo-green to-green-500 hover:from-green-500 hover:to-emerald-500 text-white font-black px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 flex items-center justify-center gap-3 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
+                  style={{
+                    filter: 'drop-shadow(0 0 20px rgba(155, 217, 91, 0.4))'
+                  }}
                 >
-                  <Package className="w-5 h-5" />
-                  Shop Now
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-logo-green/50 to-green-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"></div>
+                  <Package className="w-6 h-6 relative z-10" />
+                  <span className="relative z-10">Shop Now</span>
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                 </button>
-                <button className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-6 sm:px-6 py-4 sm:py-3 rounded-xl text-base sm:text-base transition-all duration-300 min-h-[56px] sm:min-h-[48px] touch-manipulation tap-highlight-none focus-visible-ring">
+                <button className="border-2 border-logo-green text-logo-green hover:bg-logo-green hover:text-white font-bold px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring hover:shadow-lg transform hover:scale-105">
                   Learn More
                 </button>
               </div>
 
-              {/* Trust Indicators */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-4 text-xs text-snack-dark-blue/60">
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3 text-logo-green" />
-                  <span className="hidden sm:inline">30+ Snack Varieties</span>
-                  <span className="sm:hidden">30+ Varieties</span>
+              {/* Enhanced Trust Indicators */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 text-sm text-snack-dark-blue/70">
+                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
+                  <CheckCircle className="w-4 h-4 text-logo-green" />
+                  <span className="hidden sm:inline font-medium">30+ Snack Varieties</span>
+                  <span className="sm:hidden font-medium">30+ Varieties</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3 text-logo-green" />
-                  Fast Shipping
+                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
+                  <CheckCircle className="w-4 h-4 text-logo-green" />
+                  <span className="font-medium">Fast Shipping</span>
                 </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3 text-logo-green" />
-                  Gift Ready
+                <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
+                  <CheckCircle className="w-4 h-4 text-logo-green" />
+                  <span className="font-medium">Gift Ready</span>
                 </div>
               </div>
             </div>
 
-            {/* Hero Image */}
-            <div className="slide-up">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-logo-green/20 to-green-400/20 rounded-2xl transform rotate-6"></div>
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2Ffc09862a9f0941d4aeda13a8cb2480bc%2F9a927196010f464595d03440e3666d58?format=webp&width=800&quality=85"
-                  alt="Gift A Snack premium variety snack boxes collection featuring chips, crackers, cookies and candy assortments"
-                  className="relative z-10 w-full h-auto rounded-2xl shadow-2xl image-hover"
-                  loading="eager"
-                  fetchPriority="high"
-                  width="600"
-                  height="400"
-                />
+            {/* Enhanced Hero Image with 3D Effect */}
+            <div className="slide-up relative">
+              <div className="relative lg:scale-110 lg:translate-x-8">
+                {/* 3D Background frame */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-logo-green/30 via-green-400/20 to-emerald-400/30 rounded-3xl transform rotate-3 blur-sm"></div>
+                <div className="absolute -inset-2 bg-gradient-to-br from-orange-300/20 to-red-300/20 rounded-3xl transform -rotate-2 blur-sm"></div>
+
+                {/* Main image container with overlap effect */}
+                <div className="relative bg-white/90 backdrop-blur-sm p-4 rounded-3xl shadow-2xl border border-white/50">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2Ffc09862a9f0941d4aeda13a8cb2480bc%2F9a927196010f464595d03440e3666d58?format=webp&width=900&quality=90"
+                    alt="Gift A Snack premium variety snack boxes collection featuring chips, crackers, cookies and candy assortments"
+                    className="relative z-10 w-full h-auto rounded-2xl transform transition-transform duration-500 hover:scale-105"
+                    loading="eager"
+                    fetchPriority="high"
+                    width="700"
+                    height="500"
+                    style={{
+                      filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.15))'
+                    }}
+                  />
+
+                  {/* Floating elements for 3D effect */}
+                  <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full blur-sm opacity-80 animate-pulse"></div>
+                  <div className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-md opacity-60 animate-pulse delay-1000"></div>
+                </div>
               </div>
             </div>
           </div>
