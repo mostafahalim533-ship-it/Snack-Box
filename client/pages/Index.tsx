@@ -968,14 +968,21 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Conversion Boosters */}
-      <section className="py-8 px-4 bg-white">
-        <div className="max-w-5xl mx-auto">
+      {/* Enhanced Conversion Boosters */}
+      <section className="py-12 px-4 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        {/* Decorative snack elements */}
+        <div className="absolute top-8 left-16 text-2xl opacity-10 animate-pulse">🍪</div>
+        <div className="absolute bottom-8 right-20 text-2xl opacity-10 animate-pulse delay-1000">🍫</div>
+        <div className="absolute top-16 right-32 text-xl opacity-10 animate-pulse delay-500">🥨</div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
           {/* Fast Shipping */}
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-3 bg-logo-green/10 text-logo-green px-4 py-2 rounded-xl">
-              <Truck className="w-5 h-5" />
-              <span className="text-sm font-semibold">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-4 bg-gradient-to-r from-logo-green/15 to-green-400/15 backdrop-blur-sm text-logo-green px-8 py-4 rounded-2xl shadow-lg border border-logo-green/20">
+              <div className="w-12 h-12 bg-logo-green rounded-full flex items-center justify-center shadow-lg">
+                <Truck className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-base font-bold">
                 Fast & Guaranteed Shipping Across the United States
               </span>
             </div>
@@ -983,18 +990,37 @@ export default function Index() {
 
           {/* Payment Icons */}
           <div className="text-center">
-            <p className="text-gray-600 mb-4 text-sm font-semibold">
+            <p className="text-gray-700 mb-6 text-lg font-bold">
               Secure Payment Methods
             </p>
-            <div className="flex justify-center items-center gap-4">
-              <div className="w-16 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-lg hover:shadow-xl transition-shadow">
+            <div className="flex justify-center items-center gap-6 flex-wrap">
+              <div className="w-20 h-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl flex items-center justify-center text-white text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                 VISA
               </div>
-              <div className="w-16 h-8 bg-red-600 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-20 h-12 bg-gradient-to-r from-red-600 to-red-700 rounded-xl flex items-center justify-center text-white text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                 MC
               </div>
-              <div className="w-16 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-white text-xs font-bold shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-20 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center text-white text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
                 PayPal
+              </div>
+              <div className="w-20 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center text-white text-sm font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                AMEX
+              </div>
+            </div>
+
+            {/* Additional security badges */}
+            <div className="flex justify-center items-center gap-6 mt-8 flex-wrap">
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-gray-200/50">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span className="text-sm font-medium text-gray-700">SSL Secure</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-gray-200/50">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span className="text-sm font-medium text-gray-700">256-bit Encryption</span>
+              </div>
+              <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-gray-200/50">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span className="text-sm font-medium text-gray-700">PCI Compliant</span>
               </div>
             </div>
           </div>
