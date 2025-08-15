@@ -762,8 +762,8 @@ export default function Index() {
                       height="280"
                     />
 
-                    {/* Discount Badge - corner placement */}
-                    <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-xl text-xs font-black shadow-lg">
+                    {/* Enhanced Discount Badge */}
+                    <div className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-red-600 text-white px-2.5 py-1 rounded-xl text-xs font-black shadow-xl">
                       -{savingsPercent}%
                     </div>
 
