@@ -774,16 +774,24 @@ export default function Index() {
                       </div>
                     )}
 
-                    {/* Out of Stock Overlay */}
-                    {product.outOfStock && (
-                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-t-2xl">
-                        <div className="bg-white px-3 py-1.5 rounded-xl">
-                          <span className="text-red-600 font-bold text-xs">
-                            Out of Stock
-                          </span>
-                        </div>
+                    {/* Price Strip Overlay at Bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent p-3 lg:p-4 pb-4 lg:pb-5">
+                      <div className="flex items-baseline gap-2 mb-1">
+                        <span className="text-xl lg:text-2xl font-black text-white drop-shadow-lg">
+                          {pricing.salePrice}
+                        </span>
+                        <span className="text-sm lg:text-base text-gray-200 line-through">
+                          {pricing.regularPrice}
+                        </span>
                       </div>
-                    )}
+                      <div className="text-xs lg:text-sm font-bold text-green-300">
+                        Save $
+                        {(
+                          parseFloat(pricing.regularPrice.replace("$", "")) -
+                          parseFloat(pricing.salePrice.replace("$", ""))
+                        ).toFixed(2)}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Content Area - 30% of card area, clean and minimal */}
