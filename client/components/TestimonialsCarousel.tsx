@@ -244,10 +244,10 @@ export default function TestimonialsCarousel() {
             </div>
           </div>
 
-          {/* Navigation arrows for mobile */}
+          {/* Enhanced navigation arrows for mobile */}
           <button
             onClick={goToPrev}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-logo-green p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-logo-green p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl border border-white/50"
             aria-label="Previous testimonial"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -255,34 +255,36 @@ export default function TestimonialsCarousel() {
 
           <button
             onClick={goToNext}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-logo-green p-2 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-logo-green p-3 rounded-full shadow-xl transition-all duration-300 hover:scale-110 hover:shadow-2xl border border-white/50"
             aria-label="Next testimonial"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Indicators */}
-        <div className="flex justify-center mt-6 sm:mt-8 gap-2">
+        {/* Enhanced indicators */}
+        <div className="flex justify-center mt-8 sm:mt-12 gap-3">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentTestimonial(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+              className={`transition-all duration-300 hover:scale-125 ${
                 index === currentTestimonial
-                  ? "bg-logo-green shadow-lg"
-                  : "bg-gray-300"
+                  ? "w-8 h-3 bg-gradient-to-r from-logo-green to-green-400 rounded-full shadow-lg"
+                  : "w-3 h-3 bg-gray-300 hover:bg-gray-400 rounded-full"
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
           ))}
         </div>
 
-        {/* Mobile testimonial counter */}
-        <div className="md:hidden text-center mt-4">
-          <span className="text-sm text-gray-600">
-            {currentTestimonial + 1} of {testimonials.length}
-          </span>
+        {/* Enhanced mobile testimonial counter */}
+        <div className="md:hidden text-center mt-6">
+          <div className="inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50">
+            <span className="text-sm font-medium text-gray-700">
+              {currentTestimonial + 1} of {testimonials.length}
+            </span>
+          </div>
         </div>
       </div>
     </section>
