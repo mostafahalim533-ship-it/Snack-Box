@@ -628,71 +628,42 @@ export default function Index() {
                   return (
                     <div
                       key={product.id}
-                      className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 w-[280px] flex-shrink-0 overflow-hidden group hover:scale-[1.02] active:scale-[0.98] border border-gray-100"
+                      className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 w-[300px] flex-shrink-0 overflow-hidden group hover:scale-[1.03] active:scale-[0.98] relative"
                     >
-                      {/* Product Image - 70% of card area with 16px border radius */}
-                      <div className="relative h-[210px] overflow-hidden rounded-t-2xl bg-gray-50">
+                      {/* Full Image Fill with White Background */}
+                      <div className="relative h-[320px] overflow-hidden bg-white p-4">
                         <img
-                          src={`${product.image}&quality=90`}
+                          src={`${product.image}&quality=95`}
                           alt={`${product.name} - Premium snack variety box with ${product.size} assorted treats perfect for gifting`}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-700 drop-shadow-xl"
                           loading="lazy"
-                          width="280"
-                          height="210"
+                          width="300"
+                          height="320"
                         />
 
-                        {/* Discount Badge - corner placement */}
-                        <div className="absolute top-3 left-3 bg-red-500 text-white px-2.5 py-1 rounded-xl text-xs font-black shadow-lg">
+                        {/* Discount Badge - Enhanced */}
+                        <div className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1.5 rounded-xl text-sm font-black shadow-xl">
                           -{savingsPercent}%
                         </div>
 
                         {/* Popular Badge */}
                         {index === 1 && (
-                          <div className="absolute top-3 right-3 bg-orange-500 text-white px-2.5 py-1 rounded-xl text-xs font-bold shadow-lg">
+                          <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1.5 rounded-xl text-sm font-bold shadow-xl">
                             🔥 Popular
                           </div>
                         )}
 
-                        {/* Out of Stock Overlay */}
-                        {product.outOfStock && (
-                          <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-t-2xl">
-                            <div className="bg-white px-3 py-1.5 rounded-xl">
-                              <span className="text-red-600 font-bold text-sm">
-                                Out of Stock
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Content Area - 30% of card area, clean and minimal */}
-                      <div className="p-4 space-y-3">
-                        {/* Product Title - Bold, clean typography */}
-                        <h3 className="font-bold text-gray-900 leading-tight text-base line-clamp-2 min-h-[40px]">
-                          {product.shortName || product.name}
-                        </h3>
-
-                        {/* Box Contents Icons - playful visual */}
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-base">🍪</span>
-                          <span className="text-base">🍫</span>
-                          <span className="text-base">🥨</span>
-                          <span className="text-xs text-gray-500 ml-2 font-medium">
-                            {product.size} items
-                          </span>
-                        </div>
-
-                        {/* Price Section - Prominent and bold */}
-                        <div className="space-y-1">
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-2xl font-black text-red-500">
+                        {/* Price Strip Overlay at Bottom */}
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent p-4 pb-6">
+                          <div className="flex items-baseline gap-2 mb-1">
+                            <span className="text-2xl font-black text-white drop-shadow-lg">
                               {pricing.salePrice}
                             </span>
-                            <span className="text-base text-gray-400 line-through">
+                            <span className="text-lg text-gray-200 line-through">
                               {pricing.regularPrice}
                             </span>
                           </div>
-                          <div className="text-sm font-bold text-green-600">
+                          <div className="text-sm font-bold text-green-300">
                             Save $
                             {(
                               parseFloat(
@@ -701,31 +672,51 @@ export default function Index() {
                             ).toFixed(2)}
                           </div>
                         </div>
+                      </div>
 
-                        {/* Ratings - compact */}
-                        {product.rating && (
-                          <div className="flex items-center gap-1">
-                            <div className="flex">
-                              {[...Array(5)].map((_, i) => (
-                                <Star
-                                  key={i}
-                                  className={`w-3.5 h-3.5 ${i < product.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
-                                />
-                              ))}
-                            </div>
-                            <span className="text-xs text-gray-600 ml-1">
-                              ({product.reviewCount})
+                      {/* Compact Content Area */}
+                      <div className="p-4 space-y-3">
+                        {/* Product Title */}
+                        <h3 className="font-bold text-gray-900 leading-tight text-base line-clamp-2 min-h-[40px]">
+                          {product.shortName || product.name}
+                        </h3>
+
+                        {/* Box Contents Icons & Rating */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-base">🍪</span>
+                            <span className="text-base">🍫</span>
+                            <span className="text-base">🥨</span>
+                            <span className="text-xs text-gray-500 ml-1 font-medium">
+                              {product.size}
                             </span>
                           </div>
-                        )}
 
-                        {/* View Details Button - Vibrant, full-width */}
+                          {/* Ratings - compact */}
+                          {product.rating && (
+                            <div className="flex items-center gap-1">
+                              <div className="flex">
+                                {[...Array(5)].map((_, i) => (
+                                  <Star
+                                    key={i}
+                                    className={`w-3 h-3 ${i < product.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                                  />
+                                ))}
+                              </div>
+                              <span className="text-xs text-gray-600 ml-1">
+                                ({product.reviewCount})
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* View Details Button */}
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelectedProduct(product);
                           }}
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+                          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-3 rounded-xl text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                         >
                           <Eye className="w-4 h-4" />
                           View Details
