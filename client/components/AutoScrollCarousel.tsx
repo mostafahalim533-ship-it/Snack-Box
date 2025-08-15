@@ -39,18 +39,21 @@ const AutoScrollCarousel = () => {
         <div className="absolute top-16 left-20 text-4xl rotate-12">🍪</div>
         <div className="absolute top-32 right-24 text-3xl -rotate-12">🍫</div>
         <div className="absolute bottom-20 left-32 text-3xl rotate-45">🥨</div>
-        <div className="absolute bottom-16 right-20 text-4xl -rotate-45">🎁</div>
+        <div className="absolute bottom-16 right-20 text-4xl -rotate-45">
+          🎁
+        </div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-heading-red mb-4 tracking-tight">
             Our Care Package Collection
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Discover the perfect snack experience for every occasion and celebration
+            Discover the perfect snack experience for every occasion and
+            celebration
           </p>
-          
+
           {/* Decorative divider */}
           <div className="flex items-center justify-center mt-6">
             <div className="w-16 h-1 bg-gradient-to-r from-transparent via-logo-green to-transparent rounded-full"></div>
@@ -79,12 +82,14 @@ const AutoScrollCarousel = () => {
             ))}
           </div>
         </div>
-        
+
         {/* Additional trust elements */}
         <div className="text-center mt-8">
           <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-gray-200/50">
             <span className="text-logo-green text-lg">✨</span>
-            <span className="text-sm font-semibold text-gray-700">Beautifully packaged for gifting</span>
+            <span className="text-sm font-semibold text-gray-700">
+              Beautifully packaged for gifting
+            </span>
           </div>
         </div>
       </div>

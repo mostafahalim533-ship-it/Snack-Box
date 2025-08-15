@@ -241,14 +241,14 @@ export default function Index() {
   // Control body overflow when modal is open
   useEffect(() => {
     if (selectedProduct) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     // Cleanup on unmount
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [selectedProduct]);
 
@@ -443,7 +443,7 @@ export default function Index() {
                   onClick={scrollToProducts}
                   className="group relative bg-gradient-to-r from-logo-green to-green-500 hover:from-green-500 hover:to-emerald-500 text-white font-black px-8 sm:px-10 py-5 sm:py-6 rounded-2xl text-lg sm:text-xl transition-all duration-300 flex items-center justify-center gap-3 min-h-[64px] sm:min-h-[72px] touch-manipulation tap-highlight-none focus-visible-ring shadow-xl hover:shadow-2xl transform hover:scale-105 overflow-hidden"
                   style={{
-                    filter: 'drop-shadow(0 0 20px rgba(155, 217, 91, 0.4))'
+                    filter: "drop-shadow(0 0 20px rgba(155, 217, 91, 0.4))",
                   }}
                 >
                   {/* Glow effect */}
@@ -462,7 +462,9 @@ export default function Index() {
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-6 text-sm text-snack-dark-blue/70">
                 <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
                   <CheckCircle className="w-4 h-4 text-logo-green" />
-                  <span className="hidden sm:inline font-medium">30+ Snack Varieties</span>
+                  <span className="hidden sm:inline font-medium">
+                    30+ Snack Varieties
+                  </span>
                   <span className="sm:hidden font-medium">30+ Varieties</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/60 backdrop-blur-sm px-3 py-2 rounded-full">
@@ -494,7 +496,7 @@ export default function Index() {
                     width="700"
                     height="500"
                     style={{
-                      filter: 'drop-shadow(0 25px 50px rgba(0,0,0,0.15))'
+                      filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.15))",
                     }}
                   />
 
@@ -536,11 +538,11 @@ export default function Index() {
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               const colors = [
-                'from-red-500 to-pink-500',
-                'from-blue-500 to-cyan-500',
-                'from-green-500 to-emerald-500',
-                'from-purple-500 to-violet-500',
-                'from-orange-500 to-yellow-500'
+                "from-red-500 to-pink-500",
+                "from-blue-500 to-cyan-500",
+                "from-green-500 to-emerald-500",
+                "from-purple-500 to-violet-500",
+                "from-orange-500 to-yellow-500",
               ];
 
               return (
@@ -548,16 +550,20 @@ export default function Index() {
                   key={index}
                   className="group text-center transform transition-all duration-700 hover:scale-105"
                   style={{
-                    animation: `fadeInUp 0.8s ease-out ${index * 0.2}s both`
+                    animation: `fadeInUp 0.8s ease-out ${index * 0.2}s both`,
                   }}
                 >
                   {/* Circular Icon Container with Colorful Design */}
                   <div className="relative mb-6">
                     {/* Outer glow ring */}
-                    <div className={`absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
+                    <div
+                      className={`absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
+                    ></div>
 
                     {/* Main circular icon */}
-                    <div className={`relative w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:rotate-6`}>
+                    <div
+                      className={`relative w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:rotate-6`}
+                    >
                       <IconComponent className="w-10 h-10 text-white drop-shadow-lg" />
 
                       {/* Inner highlight */}
@@ -580,7 +586,9 @@ export default function Index() {
                   </p>
 
                   {/* Bottom accent line */}
-                  <div className={`w-12 h-1 bg-gradient-to-r ${colors[index]} mx-auto mt-4 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}></div>
+                  <div
+                    className={`w-12 h-1 bg-gradient-to-r ${colors[index]} mx-auto mt-4 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}
+                  ></div>
                 </div>
               );
             })}
@@ -590,7 +598,9 @@ export default function Index() {
           <div className="text-center mt-12">
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-gray-200/50">
               <Sparkles className="w-5 h-5 text-logo-green" />
-              <span className="text-sm font-semibold text-gray-700">Trusted by thousands of happy customers</span>
+              <span className="text-sm font-semibold text-gray-700">
+                Trusted by thousands of happy customers
+              </span>
             </div>
           </div>
         </div>
@@ -811,7 +821,6 @@ export default function Index() {
                       </span>
                     </div>
 
-
                     {/* Ratings - compact */}
                     {product.rating && (
                       <div className="flex items-center gap-1">
@@ -971,9 +980,15 @@ export default function Index() {
       {/* Enhanced Conversion Boosters */}
       <section className="py-12 px-4 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
         {/* Decorative snack elements */}
-        <div className="absolute top-8 left-16 text-2xl opacity-10 animate-pulse">🍪</div>
-        <div className="absolute bottom-8 right-20 text-2xl opacity-10 animate-pulse delay-1000">🍫</div>
-        <div className="absolute top-16 right-32 text-xl opacity-10 animate-pulse delay-500">🥨</div>
+        <div className="absolute top-8 left-16 text-2xl opacity-10 animate-pulse">
+          🍪
+        </div>
+        <div className="absolute bottom-8 right-20 text-2xl opacity-10 animate-pulse delay-1000">
+          🍫
+        </div>
+        <div className="absolute top-16 right-32 text-xl opacity-10 animate-pulse delay-500">
+          🥨
+        </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
           {/* Fast Shipping */}
@@ -1012,15 +1027,21 @@ export default function Index() {
             <div className="flex justify-center items-center gap-6 mt-8 flex-wrap">
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-gray-200/50">
                 <CheckCircle className="w-4 h-4 text-green-600" />
-                <span className="text-sm font-medium text-gray-700">SSL Secure</span>
+                <span className="text-sm font-medium text-gray-700">
+                  SSL Secure
+                </span>
               </div>
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-gray-200/50">
                 <CheckCircle className="w-4 h-4 text-green-600" />
-                <span className="text-sm font-medium text-gray-700">256-bit Encryption</span>
+                <span className="text-sm font-medium text-gray-700">
+                  256-bit Encryption
+                </span>
               </div>
               <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-gray-200/50">
                 <CheckCircle className="w-4 h-4 text-green-600" />
-                <span className="text-sm font-medium text-gray-700">PCI Compliant</span>
+                <span className="text-sm font-medium text-gray-700">
+                  PCI Compliant
+                </span>
               </div>
             </div>
           </div>
@@ -1050,7 +1071,8 @@ export default function Index() {
                   loading="lazy"
                 />
                 <p className="text-gray-300 text-sm leading-relaxed">
-                  Premium snack boxes perfect for gifts, offices, and special occasions. Spreading joy one box at a time.
+                  Premium snack boxes perfect for gifts, offices, and special
+                  occasions. Spreading joy one box at a time.
                 </p>
               </div>
             </div>
@@ -1204,7 +1226,8 @@ export default function Index() {
           {/* Copyright */}
           <div className="border-t border-gray-700 pt-6 text-center">
             <p className="text-gray-400 text-sm">
-              &copy; 2025 Gift A Snack. All rights reserved. | Made with ❤️ for snack lovers everywhere
+              &copy; 2025 Gift A Snack. All rights reserved. | Made with ❤️ for
+              snack lovers everywhere
             </p>
           </div>
         </div>
@@ -1228,7 +1251,7 @@ export default function Index() {
           {/* Modal Backdrop with Blur Effect */}
           <div
             className="fixed inset-0 bg-black/60 z-50"
-            style={{ backdropFilter: 'blur(5px)' }}
+            style={{ backdropFilter: "blur(5px)" }}
             onClick={() => setSelectedProduct(null)}
           ></div>
 
@@ -1238,7 +1261,7 @@ export default function Index() {
               className="bg-white w-full h-full lg:w-auto lg:h-auto lg:max-w-6xl lg:max-h-[90vh] shadow-2xl lg:rounded-3xl relative overflow-hidden"
               style={{
                 animation: "modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-                maxHeight: "calc(100vh - 40px)"
+                maxHeight: "calc(100vh - 40px)",
               }}
               onTouchStart={handleTouchStart}
               onTouchMove={handleTouchMove}
@@ -1271,21 +1294,33 @@ export default function Index() {
                         width="400"
                         height="400"
                         style={{
-                          animation: "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
-                          filter: "drop-shadow(0 20px 25px rgba(0,0,0,0.15))"
+                          animation:
+                            "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
+                          filter: "drop-shadow(0 20px 25px rgba(0,0,0,0.15))",
                         }}
                       />
                       {/* Mobile Discount Badge */}
                       <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1.5 rounded-xl text-sm font-black shadow-lg">
-                        -{(
+                        -
+                        {(
                           ((parseFloat(
-                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
-                          ) - parseFloat(
-                            calculatePricing(selectedProduct.price).salePrice.replace("$", "")
-                          )) / parseFloat(
-                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
-                          )) * 100
-                        ).toFixed(0)}%
+                            calculatePricing(
+                              selectedProduct.price,
+                            ).regularPrice.replace("$", ""),
+                          ) -
+                            parseFloat(
+                              calculatePricing(
+                                selectedProduct.price,
+                              ).salePrice.replace("$", ""),
+                            )) /
+                            parseFloat(
+                              calculatePricing(
+                                selectedProduct.price,
+                              ).regularPrice.replace("$", ""),
+                            )) *
+                          100
+                        ).toFixed(0)}
+                        %
                       </div>
                     </div>
                   </div>
@@ -1301,21 +1336,33 @@ export default function Index() {
                         width="400"
                         height="400"
                         style={{
-                          animation: "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
-                          filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.2))"
+                          animation:
+                            "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
+                          filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.2))",
                         }}
                       />
                       {/* Desktop Discount Badge */}
                       <div className="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-xl text-sm font-black shadow-xl">
-                        -{(
+                        -
+                        {(
                           ((parseFloat(
-                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
-                          ) - parseFloat(
-                            calculatePricing(selectedProduct.price).salePrice.replace("$", "")
-                          )) / parseFloat(
-                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
-                          )) * 100
-                        ).toFixed(0)}%
+                            calculatePricing(
+                              selectedProduct.price,
+                            ).regularPrice.replace("$", ""),
+                          ) -
+                            parseFloat(
+                              calculatePricing(
+                                selectedProduct.price,
+                              ).salePrice.replace("$", ""),
+                            )) /
+                            parseFloat(
+                              calculatePricing(
+                                selectedProduct.price,
+                              ).regularPrice.replace("$", ""),
+                            )) *
+                          100
+                        ).toFixed(0)}
+                        %
                       </div>
                       {/* Premium Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent rounded-2xl pointer-events-none"></div>
@@ -1329,7 +1376,7 @@ export default function Index() {
                   <div
                     className="flex-1 overflow-y-auto p-4 lg:p-8 pb-28 lg:pb-32"
                     style={{
-                      maxHeight: "calc(100vh - 40px)"
+                      maxHeight: "calc(100vh - 40px)",
                     }}
                   >
                     {/* Title + Rating */}
@@ -1370,8 +1417,16 @@ export default function Index() {
                         <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-bold">
                           Save $
                           {(
-                            parseFloat(calculatePricing(selectedProduct.price).regularPrice.replace("$", "")) -
-                            parseFloat(calculatePricing(selectedProduct.price).salePrice.replace("$", ""))
+                            parseFloat(
+                              calculatePricing(
+                                selectedProduct.price,
+                              ).regularPrice.replace("$", ""),
+                            ) -
+                            parseFloat(
+                              calculatePricing(
+                                selectedProduct.price,
+                              ).salePrice.replace("$", ""),
+                            )
                           ).toFixed(2)}
                         </span>
                         <div className="flex items-center gap-2">
@@ -1387,7 +1442,9 @@ export default function Index() {
 
                     {/* Product Description */}
                     <div className="mb-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">About this product</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">
+                        About this product
+                      </h3>
                       {selectedProduct.bulletPoints ? (
                         <ul className="space-y-4">
                           {selectedProduct.bulletPoints.map((point, index) => (
@@ -1410,42 +1467,60 @@ export default function Index() {
 
                     {/* What's Included */}
                     <div className="mb-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">What's included</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">
+                        What's included
+                      </h3>
                       <div className="grid grid-cols-1 gap-4">
                         <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                           <Package className="w-5 h-5 text-green-600" />
-                          <span className="text-base text-gray-700">Premium variety of snacks ({selectedProduct.size})</span>
+                          <span className="text-base text-gray-700">
+                            Premium variety of snacks ({selectedProduct.size})
+                          </span>
                         </div>
                         <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                           <Gift className="w-5 h-5 text-green-600" />
-                          <span className="text-base text-gray-700">Beautiful gift packaging</span>
+                          <span className="text-base text-gray-700">
+                            Beautiful gift packaging
+                          </span>
                         </div>
                         <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                           <CheckCircle className="w-5 h-5 text-green-600" />
-                          <span className="text-base text-gray-700">Greeting card included</span>
+                          <span className="text-base text-gray-700">
+                            Greeting card included
+                          </span>
                         </div>
                         <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
                           <Truck className="w-5 h-5 text-green-600" />
-                          <span className="text-base text-gray-700">Fast shipping across the US</span>
+                          <span className="text-base text-gray-700">
+                            Fast shipping across the US
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     {/* Shipping & Returns */}
                     <div className="mb-8">
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">Shipping & Returns</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">
+                        Shipping & Returns
+                      </h3>
                       <div className="grid grid-cols-1 gap-3">
                         <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
                           <CheckCircle className="w-5 h-5 text-blue-600" />
-                          <span className="text-base text-gray-700">Free shipping on orders over $35</span>
+                          <span className="text-base text-gray-700">
+                            Free shipping on orders over $35
+                          </span>
                         </div>
                         <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
                           <CheckCircle className="w-5 h-5 text-blue-600" />
-                          <span className="text-base text-gray-700">30-day satisfaction guarantee</span>
+                          <span className="text-base text-gray-700">
+                            30-day satisfaction guarantee
+                          </span>
                         </div>
                         <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
                           <CheckCircle className="w-5 h-5 text-blue-600" />
-                          <span className="text-base text-gray-700">Secure packaging guarantee</span>
+                          <span className="text-base text-gray-700">
+                            Secure packaging guarantee
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -1462,7 +1537,9 @@ export default function Index() {
                       <ShoppingCart className="w-6 h-6" />
                       <div className="flex flex-col">
                         <span className="font-black">BUY NOW ON</span>
-                        <span className="font-black text-yellow-300">WALMART</span>
+                        <span className="font-black text-yellow-300">
+                          WALMART
+                        </span>
                       </div>
                       <div className="bg-yellow-400 text-blue-800 px-3 py-1.5 rounded-full text-base font-black">
                         {calculatePricing(selectedProduct.price).salePrice}

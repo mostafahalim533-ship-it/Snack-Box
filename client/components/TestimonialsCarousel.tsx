@@ -119,9 +119,15 @@ export default function TestimonialsCarousel() {
       </div>
 
       {/* Decorative snack icons */}
-      <div className="absolute top-32 right-20 text-4xl opacity-10 animate-pulse">🍪</div>
-      <div className="absolute bottom-40 left-16 text-3xl opacity-10 animate-pulse delay-1000">🍫</div>
-      <div className="absolute top-48 left-32 text-2xl opacity-10 animate-pulse delay-500">🥨</div>
+      <div className="absolute top-32 right-20 text-4xl opacity-10 animate-pulse">
+        🍪
+      </div>
+      <div className="absolute bottom-40 left-16 text-3xl opacity-10 animate-pulse delay-1000">
+        🍫
+      </div>
+      <div className="absolute top-48 left-32 text-2xl opacity-10 animate-pulse delay-500">
+        🥨
+      </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-12 sm:mb-20">
@@ -129,7 +135,8 @@ export default function TestimonialsCarousel() {
             What Our Customers Say
           </h2>
           <p className="text-lg sm:text-xl text-snack-dark-blue/80 max-w-3xl mx-auto leading-relaxed">
-            Don't just take our word for it - hear from our satisfied customers who love our snack boxes
+            Don't just take our word for it - hear from our satisfied customers
+            who love our snack boxes
           </p>
 
           {/* Decorative divider */}
@@ -151,7 +158,7 @@ export default function TestimonialsCarousel() {
                 key={testimonialIndex}
                 className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 lg:p-10 hover:scale-105 hover:-translate-y-2 transition-all duration-500 shadow-lg hover:shadow-2xl border border-white/50 group relative overflow-hidden"
                 style={{
-                  animation: `fadeInUp 0.8s ease-out ${offset * 0.2}s both`
+                  animation: `fadeInUp 0.8s ease-out ${offset * 0.2}s both`,
                 }}
               >
                 {/* Card background glow */}
