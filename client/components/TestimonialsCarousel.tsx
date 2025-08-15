@@ -194,7 +194,7 @@ export default function TestimonialsCarousel() {
           })}
         </div>
 
-        {/* Mobile: Single testimonial with swipe navigation */}
+        {/* Mobile: Enhanced single testimonial with swipe navigation */}
         <div className="md:hidden relative">
           <div
             className="overflow-hidden"
@@ -202,23 +202,28 @@ export default function TestimonialsCarousel() {
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <div className="card-enhanced p-6 transition-all duration-500 relative">
+            <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 transition-all duration-500 relative shadow-xl border border-white/50">
               {/* Swipe indicator */}
-              <div className="text-center mb-4">
-                <div className="inline-flex items-center gap-2 bg-logo-green/10 text-logo-green px-3 py-1 rounded-full text-xs">
+              <div className="text-center mb-6">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-logo-green/15 to-green-400/15 text-logo-green px-4 py-2 rounded-full text-sm font-medium">
                   <span>← Swipe for more reviews →</span>
                 </div>
               </div>
 
-              <div className="flex items-center mb-6">
-                <img
-                  src={testimonials[currentTestimonial].avatar}
-                  alt={`${testimonials[currentTestimonial].name} avatar`}
-                  className="w-16 h-16 rounded-full object-cover mr-4 shadow-lg border-2 border-logo-green/20"
-                  loading="lazy"
-                />
-                <div>
-                  <h4 className="font-semibold text-heading-red text-lg">
+              {/* Enhanced circular image layout */}
+              <div className="flex flex-col items-center mb-8">
+                <div className="relative">
+                  <img
+                    src={testimonials[currentTestimonial].avatar}
+                    alt={`${testimonials[currentTestimonial].name} avatar`}
+                    className="w-20 h-20 rounded-full object-cover shadow-2xl border-4 border-white/50"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-logo-green/20 to-purple-300/20 blur-lg -z-10"></div>
+                </div>
+
+                <div className="text-center mt-4">
+                  <h4 className="font-bold text-heading-red text-xl mb-2">
                     {testimonials[currentTestimonial].name}
                   </h4>
                   <StarRating
@@ -226,8 +231,12 @@ export default function TestimonialsCarousel() {
                   />
                 </div>
               </div>
-              <p className="text-gray-700 text-base leading-relaxed relative">
-                <span className="text-logo-green text-4xl absolute -top-2 -left-2 opacity-20">
+
+              <p className="text-gray-700 text-base leading-relaxed relative text-center">
+                <span className="text-logo-green text-5xl absolute -top-3 -left-3 opacity-20 font-serif">
+                  "
+                </span>
+                <span className="text-logo-green text-5xl absolute -bottom-6 -right-3 opacity-20 font-serif">
                   "
                 </span>
                 {testimonials[currentTestimonial].text}
