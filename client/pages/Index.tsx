@@ -512,39 +512,87 @@ export default function Index() {
       {/* Auto-Scrolling Banner Carousel */}
       <AutoScrollCarousel />
 
-      {/* Features & Benefits Section */}
-      <section className="py-6 sm:py-12 px-4 bg-gradient-to-b from-blue-50 to-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-6 sm:mb-10">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-heading-red mb-2 sm:mb-3 tracking-tight">
+      {/* Enhanced Features & Benefits Section */}
+      <section className="py-12 sm:py-20 px-4 relative overflow-hidden">
+        {/* Background with subtle pattern */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50 via-white to-gray-50"></div>
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-10 left-1/4 w-32 h-32 bg-gradient-to-br from-logo-green/20 to-transparent rounded-full blur-2xl"></div>
+          <div className="absolute bottom-10 right-1/4 w-40 h-40 bg-gradient-to-br from-orange-300/20 to-transparent rounded-full blur-2xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-heading-red mb-4 sm:mb-6 tracking-tight">
               Why Choose Gift A Snack Box?
             </h2>
-            <p className="text-base text-snack-dark-blue/70 max-w-xl mx-auto">
+            <p className="text-lg text-snack-dark-blue/80 max-w-2xl mx-auto leading-relaxed">
               Discover what makes our snack boxes the perfect choice for every
-              occasion
+              occasion and celebration
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* Two Row Layout for Better Space Utilization */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-5xl mx-auto">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
+              const colors = [
+                'from-red-500 to-pink-500',
+                'from-blue-500 to-cyan-500',
+                'from-green-500 to-emerald-500',
+                'from-purple-500 to-violet-500',
+                'from-orange-500 to-yellow-500'
+              ];
+
               return (
                 <div
                   key={index}
-                  className="text-center card-enhanced p-5 hover:scale-105 transition-all duration-300"
+                  className="group text-center transform transition-all duration-700 hover:scale-105"
+                  style={{
+                    animation: `fadeInUp 0.8s ease-out ${index * 0.2}s both`
+                  }}
                 >
-                  <div className="feature-icon mb-4">
-                    <IconComponent className="w-6 h-6" />
+                  {/* Circular Icon Container with Colorful Design */}
+                  <div className="relative mb-6">
+                    {/* Outer glow ring */}
+                    <div className={`absolute inset-0 w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-300`}></div>
+
+                    {/* Main circular icon */}
+                    <div className={`relative w-24 h-24 mx-auto bg-gradient-to-br ${colors[index]} rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 transform group-hover:rotate-6`}>
+                      <IconComponent className="w-10 h-10 text-white drop-shadow-lg" />
+
+                      {/* Inner highlight */}
+                      <div className="absolute inset-2 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+
+                    {/* Floating particles effect */}
+                    <div className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
+                    <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-pink-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse delay-300"></div>
                   </div>
-                  <h3 className="text-lg font-bold text-heading-red mb-2">
+
+                  {/* Title with enhanced styling */}
+                  <h3 className="text-xl lg:text-2xl font-black text-heading-red mb-3 group-hover:text-snack-dark-blue transition-colors duration-300">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+
+                  {/* Description with better typography */}
+                  <p className="text-base text-gray-600 leading-relaxed max-w-xs mx-auto group-hover:text-gray-700 transition-colors duration-300">
                     {feature.description}
                   </p>
+
+                  {/* Bottom accent line */}
+                  <div className={`w-12 h-1 bg-gradient-to-r ${colors[index]} mx-auto mt-4 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-16 transition-all duration-300`}></div>
                 </div>
               );
             })}
+          </div>
+
+          {/* Additional visual element */}
+          <div className="text-center mt-12">
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-gray-200/50">
+              <Sparkles className="w-5 h-5 text-logo-green" />
+              <span className="text-sm font-semibold text-gray-700">Trusted by thousands of happy customers</span>
+            </div>
           </div>
         </div>
       </section>
