@@ -709,7 +709,7 @@ export default function Index() {
 
                     {/* Box Contents Icons - playful visual */}
                     <div className="flex items-center gap-1">
-                      <span className="text-sm lg:text-base">🍪</span>
+                      <span className="text-sm lg:text-base">���</span>
                       <span className="text-sm lg:text-base">🍫</span>
                       <span className="text-sm lg:text-base">🥨</span>
                       <span className="text-xs text-gray-500 ml-2 font-medium">
@@ -1094,10 +1094,10 @@ export default function Index() {
                 </div>
               </div>
 
-              {/* Content Section - Scrollable */}
-              <div className="flex-1 flex flex-col lg:min-h-[400px]">
-                {/* Scrollable Content Area */}
-                <div className="flex-1 overflow-y-auto">
+              {/* Content Section with Sticky Button */}
+              <div className="flex-1 flex flex-col lg:min-h-[400px] relative">
+                {/* Scrollable Content Area with bottom padding for sticky button */}
+                <div className="flex-1 overflow-y-auto pb-[140px] lg:pb-[120px]">
                   <div className="p-4 lg:p-8 space-y-6">
                     {/* Title + Rating */}
                     <div>
@@ -1198,13 +1198,32 @@ export default function Index() {
                       </div>
                     </div>
 
-                    {/* Additional spacing before button */}
-                    <div className="pb-4"></div>
+                    {/* Shipping & Returns */}
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-3">Shipping & Returns</h3>
+                      <div className="grid grid-cols-1 gap-3">
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-700">Free shipping on orders over $35</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-700">30-day satisfaction guarantee</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-700">Secure packaging guarantee</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Additional spacing for content */}
+                    <div className="pb-8"></div>
                   </div>
                 </div>
 
-                {/* Sticky Buy Button Section - Always Visible */}
-                <div className="bg-white border-t border-gray-100 p-4 lg:p-6">
+                {/* Absolutely Positioned Sticky Buy Button - Always at Bottom */}
+                <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 lg:p-6 shadow-lg lg:rounded-b-3xl">
                   <a
                     href={selectedProduct.walmartLink}
                     target="_blank"
@@ -1222,7 +1241,7 @@ export default function Index() {
                   </a>
 
                   {/* Trust indicators */}
-                  <div className="flex items-center justify-center gap-4 lg:gap-6 mt-4 text-xs lg:text-sm text-gray-600">
+                  <div className="flex items-center justify-center gap-4 lg:gap-6 mt-3 text-xs lg:text-sm text-gray-600">
                     <div className="flex items-center gap-1">
                       <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
                       <span className="hidden sm:inline">Fast Shipping</span>
