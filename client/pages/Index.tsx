@@ -1039,69 +1039,119 @@ export default function Index() {
         </button>
       )}
 
-      {/* Optimized Modal with Proper Scrolling */}
+      {/* Restructured Modal - 40/60 Desktop Layout */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-start lg:items-center justify-center z-50 p-0 lg:p-8">
+        <>
+          {/* Modal Backdrop with Blur Effect */}
           <div
-            className="bg-white w-full h-full lg:w-auto lg:h-auto lg:max-w-4xl xl:max-w-5xl lg:max-h-[95vh] lg:min-h-[600px] shadow-2xl lg:rounded-3xl relative overflow-hidden"
-            style={{
-              animation: "modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
-            }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Close Button - Mobile & Desktop */}
-            <button
-              onClick={() => setSelectedProduct(null)}
-              className="absolute top-4 right-4 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 group"
+            className="fixed inset-0 bg-black/60 z-50"
+            style={{ backdropFilter: 'blur(5px)' }}
+            onClick={() => setSelectedProduct(null)}
+          ></div>
+
+          {/* Modal Container */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 lg:p-8">
+            <div
+              className="bg-white w-full h-full lg:w-auto lg:h-auto lg:max-w-6xl lg:max-h-[90vh] shadow-2xl lg:rounded-3xl relative overflow-hidden"
+              style={{
+                animation: "modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                maxHeight: "calc(100vh - 40px)"
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onClick={(e) => e.stopPropagation()}
             >
-              <X className="w-5 h-5 text-gray-600 group-hover:text-gray-800 group-hover:scale-110 transition-all" />
-            </button>
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedProduct(null)}
+                className="absolute top-4 right-4 z-30 w-10 h-10 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 group"
+              >
+                <X className="w-5 h-5 text-gray-600 group-hover:text-gray-800 group-hover:scale-110 transition-all" />
+              </button>
 
-            {/* Mobile swipe indicator */}
-            <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mt-2 mb-4 lg:hidden"></div>
+              {/* Mobile swipe indicator */}
+              <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mt-2 mb-4 lg:hidden"></div>
 
-            {/* Modal Content - Responsive Layout */}
-            <div className="flex flex-col lg:grid lg:grid-cols-2 h-full">
-              {/* Image Section - Flexible Height */}
-              <div className="relative bg-white lg:bg-gray-50 flex items-center justify-center p-4 lg:p-8 min-h-[250px] lg:min-h-[400px]">
-                <div className="relative w-full max-w-md mx-auto">
-                  <img
-                    src={`${selectedProduct.image}&quality=90`}
-                    alt={`${selectedProduct.name} - Detailed view`}
-                    className="w-full h-auto object-contain rounded-2xl shadow-lg"
-                    loading="lazy"
-                    width="400"
-                    height="400"
-                    style={{
-                      animation: "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
-                    }}
-                  />
+              {/* Desktop Layout: 40% Image | 60% Details */}
+              <div className="flex flex-col lg:grid lg:grid-cols-5 h-full">
+                {/* Image Section - 40% on Desktop, Full Width on Mobile */}
+                <div className="lg:col-span-2 relative bg-gradient-to-br from-gray-50 to-gray-100 lg:bg-gray-50">
+                  {/* Mobile: Full Width Image at Top */}
+                  <div className="lg:hidden w-full h-[40vh] relative p-4 flex items-center justify-center">
+                    <div className="relative w-full max-w-sm mx-auto h-full">
+                      <img
+                        src={`${selectedProduct.image}&quality=90`}
+                        alt={`${selectedProduct.name} - Detailed view`}
+                        className="w-full h-full object-contain rounded-2xl shadow-lg"
+                        loading="lazy"
+                        width="400"
+                        height="400"
+                        style={{
+                          animation: "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
+                          filter: "drop-shadow(0 20px 25px rgba(0,0,0,0.15))"
+                        }}
+                      />
+                      {/* Mobile Discount Badge */}
+                      <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1.5 rounded-xl text-sm font-black shadow-lg">
+                        -{(
+                          ((parseFloat(
+                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
+                          ) - parseFloat(
+                            calculatePricing(selectedProduct.price).salePrice.replace("$", "")
+                          )) / parseFloat(
+                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
+                          )) * 100
+                        ).toFixed(0)}%
+                      </div>
+                    </div>
+                  </div>
 
-                  {/* Discount Badge */}
-                  <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1.5 rounded-xl text-sm font-black shadow-lg">
-                    -{(
-                      ((parseFloat(
-                        calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
-                      ) - parseFloat(
-                        calculatePricing(selectedProduct.price).salePrice.replace("$", "")
-                      )) / parseFloat(
-                        calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
-                      )) * 100
-                    ).toFixed(0)}%
+                  {/* Desktop: Fixed Height Image Container - 100% of modal height */}
+                  <div className="hidden lg:flex h-full p-8 items-center justify-center relative">
+                    <div className="relative w-full h-full max-w-md mx-auto flex items-center justify-center">
+                      <img
+                        src={`${selectedProduct.image}&quality=90`}
+                        alt={`${selectedProduct.name} - Detailed view`}
+                        className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl"
+                        loading="lazy"
+                        width="400"
+                        height="400"
+                        style={{
+                          animation: "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
+                          filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.2))"
+                        }}
+                      />
+                      {/* Desktop Discount Badge */}
+                      <div className="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-xl text-sm font-black shadow-xl">
+                        -{(
+                          ((parseFloat(
+                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
+                          ) - parseFloat(
+                            calculatePricing(selectedProduct.price).salePrice.replace("$", "")
+                          )) / parseFloat(
+                            calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
+                          )) * 100
+                        ).toFixed(0)}%
+                      </div>
+                      {/* Premium Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent rounded-2xl pointer-events-none"></div>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Content Section with Sticky Button */}
-              <div className="flex-1 flex flex-col lg:min-h-[400px] relative">
-                {/* Scrollable Content Area with bottom padding for sticky button */}
-                <div className="flex-1 overflow-y-auto pb-[140px] lg:pb-[120px]">
-                  <div className="p-4 lg:p-8 space-y-6">
+                {/* Details Section - 60% on Desktop */}
+                <div className="lg:col-span-3 flex flex-col h-full relative">
+                  {/* Scrollable Content Area */}
+                  <div
+                    className="flex-1 overflow-y-auto p-4 lg:p-8 pb-28 lg:pb-32"
+                    style={{
+                      maxHeight: "calc(100vh - 40px)"
+                    }}
+                  >
                     {/* Title + Rating */}
-                    <div>
-                      <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-3">
+                    <div className="mb-6">
+                      <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 leading-tight mb-4">
                         {selectedProduct.shortName || selectedProduct.name}
                       </h2>
 
@@ -1124,145 +1174,142 @@ export default function Index() {
                     </div>
 
                     {/* Price Section */}
-                    <div>
-                      <div className="flex items-baseline gap-3 mb-2">
-                        <span className="text-3xl lg:text-4xl font-black text-red-500">
+                    <div className="mb-6 p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border border-red-100">
+                      <div className="flex items-baseline gap-3 mb-3">
+                        <span className="text-4xl lg:text-5xl font-black text-red-500">
                           {calculatePricing(selectedProduct.price).salePrice}
                         </span>
-                        <span className="text-xl lg:text-2xl text-gray-400 line-through">
+                        <span className="text-2xl lg:text-3xl text-gray-400 line-through">
                           {calculatePricing(selectedProduct.price).regularPrice}
                         </span>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <span className="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-bold">
                           Save $
                           {(
                             parseFloat(calculatePricing(selectedProduct.price).regularPrice.replace("$", "")) -
                             parseFloat(calculatePricing(selectedProduct.price).salePrice.replace("$", ""))
                           ).toFixed(2)}
                         </span>
-                        <div className="flex items-center gap-1">
-                          <span className="text-sm">🍪</span>
-                          <span className="text-sm">🍫</span>
-                          <span className="text-sm">🥨</span>
-                          <span className="text-xs text-gray-500 ml-1 font-medium">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg">🍪</span>
+                          <span className="text-lg">🍫</span>
+                          <span className="text-lg">🥨</span>
+                          <span className="text-sm text-gray-500 ml-2 font-medium">
                             {selectedProduct.size}
                           </span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Detailed Description with Icons */}
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-4">About this product</h3>
+                    {/* Product Description */}
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">About this product</h3>
                       {selectedProduct.bulletPoints ? (
-                        <ul className="space-y-3">
+                        <ul className="space-y-4">
                           {selectedProduct.bulletPoints.map((point, index) => (
                             <li key={index} className="flex items-start gap-3">
-                              <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                                <CheckCircle className="w-3 h-3 text-green-600" />
+                              <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <CheckCircle className="w-4 h-4 text-green-600" />
                               </div>
-                              <span className="text-sm lg:text-base text-gray-700 leading-relaxed">
+                              <span className="text-base text-gray-700 leading-relaxed">
                                 {point}
                               </span>
                             </li>
                           ))}
                         </ul>
                       ) : (
-                        <p className="text-gray-700 leading-relaxed">
+                        <p className="text-gray-700 leading-relaxed text-base">
                           {selectedProduct.description}
                         </p>
                       )}
                     </div>
 
                     {/* What's Included */}
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">What's included</h3>
-                      <div className="grid grid-cols-1 gap-3">
-                        <div className="flex items-center gap-3">
-                          <Package className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-700">Premium variety of snacks ({selectedProduct.size})</span>
+                    <div className="mb-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">What's included</h3>
+                      <div className="grid grid-cols-1 gap-4">
+                        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                          <Package className="w-5 h-5 text-green-600" />
+                          <span className="text-base text-gray-700">Premium variety of snacks ({selectedProduct.size})</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <Gift className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-700">Beautiful gift packaging</span>
+                        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                          <Gift className="w-5 h-5 text-green-600" />
+                          <span className="text-base text-gray-700">Beautiful gift packaging</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-700">Greeting card included</span>
+                        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                          <span className="text-base text-gray-700">Greeting card included</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <Truck className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-700">Fast shipping across the US</span>
+                        <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl">
+                          <Truck className="w-5 h-5 text-green-600" />
+                          <span className="text-base text-gray-700">Fast shipping across the US</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Shipping & Returns */}
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">Shipping & Returns</h3>
+                    <div className="mb-8">
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">Shipping & Returns</h3>
                       <div className="grid grid-cols-1 gap-3">
-                        <div className="flex items-center gap-3">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-700">Free shipping on orders over $35</span>
+                        <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
+                          <CheckCircle className="w-5 h-5 text-blue-600" />
+                          <span className="text-base text-gray-700">Free shipping on orders over $35</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-700">30-day satisfaction guarantee</span>
+                        <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
+                          <CheckCircle className="w-5 h-5 text-blue-600" />
+                          <span className="text-base text-gray-700">30-day satisfaction guarantee</span>
                         </div>
-                        <div className="flex items-center gap-3">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-700">Secure packaging guarantee</span>
+                        <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-xl">
+                          <CheckCircle className="w-5 h-5 text-blue-600" />
+                          <span className="text-base text-gray-700">Secure packaging guarantee</span>
                         </div>
                       </div>
                     </div>
-
-                    {/* Additional spacing for content */}
-                    <div className="pb-8"></div>
                   </div>
-                </div>
 
-                {/* Absolutely Positioned Sticky Buy Button - Always at Bottom */}
-                <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 lg:p-6 shadow-lg lg:rounded-b-3xl">
-                  <a
-                    href={selectedProduct.walmartLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 lg:py-5 text-center rounded-2xl text-lg lg:text-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
-                  >
-                    <ShoppingCart className="w-6 h-6" />
-                    <div className="flex flex-col">
-                      <span className="font-black">BUY NOW ON</span>
-                      <span className="font-black text-yellow-300">WALMART</span>
-                    </div>
-                    <div className="bg-yellow-400 text-blue-800 px-3 py-1.5 rounded-full text-base font-black">
-                      {calculatePricing(selectedProduct.price).salePrice}
-                    </div>
-                  </a>
+                  {/* Sticky Buy Button - Inside Details Column (Desktop) / Fixed at Bottom (Mobile) */}
+                  <div className="lg:sticky lg:bottom-0 fixed bottom-0 left-0 right-0 lg:relative bg-white border-t border-gray-200 p-4 lg:p-6 shadow-lg lg:shadow-none lg:border-t lg:rounded-b-3xl z-40">
+                    <a
+                      href={selectedProduct.walmartLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 lg:py-5 text-center rounded-2xl text-lg lg:text-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                    >
+                      <ShoppingCart className="w-6 h-6" />
+                      <div className="flex flex-col">
+                        <span className="font-black">BUY NOW ON</span>
+                        <span className="font-black text-yellow-300">WALMART</span>
+                      </div>
+                      <div className="bg-yellow-400 text-blue-800 px-3 py-1.5 rounded-full text-base font-black">
+                        {calculatePricing(selectedProduct.price).salePrice}
+                      </div>
+                    </a>
 
-                  {/* Trust indicators */}
-                  <div className="flex items-center justify-center gap-4 lg:gap-6 mt-3 text-xs lg:text-sm text-gray-600">
-                    <div className="flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
-                      <span className="hidden sm:inline">Fast Shipping</span>
-                      <span className="sm:hidden">Shipping</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
-                      <span className="hidden sm:inline">Secure Payment</span>
-                      <span className="sm:hidden">Secure</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
-                      <span className="hidden sm:inline">Easy Returns</span>
-                      <span className="sm:hidden">Returns</span>
+                    {/* Trust indicators */}
+                    <div className="flex items-center justify-center gap-4 lg:gap-6 mt-3 text-xs lg:text-sm text-gray-600">
+                      <div className="flex items-center gap-1">
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
+                        <span className="hidden sm:inline">Fast Shipping</span>
+                        <span className="sm:hidden">Shipping</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
+                        <span className="hidden sm:inline">Secure Payment</span>
+                        <span className="sm:hidden">Secure</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
+                        <span className="hidden sm:inline">Easy Returns</span>
+                        <span className="sm:hidden">Returns</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
