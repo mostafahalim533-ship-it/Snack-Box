@@ -1001,20 +1001,44 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-snack-dark-blue text-white py-8 px-4">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      {/* Enhanced Footer */}
+      <footer className="bg-gradient-to-br from-snack-dark-blue via-gray-900 to-snack-dark-blue text-white py-12 px-4 relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-8 right-16 text-3xl">🍪</div>
+          <div className="absolute bottom-12 left-20 text-2xl">🍫</div>
+          <div className="absolute top-20 left-1/3 text-2xl">🥨</div>
+          <div className="absolute bottom-20 right-1/3 text-3xl">🎁</div>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Main footer content */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+            {/* Brand Section */}
+            <div className="lg:col-span-1">
+              <div className="mb-6">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2Fcd932fcd18414ba798762d622c2b825c?format=webp&width=200&quality=90"
+                  alt="Gift A Snack Logo"
+                  className="h-12 w-auto mb-4 filter brightness-0 invert"
+                  loading="lazy"
+                />
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Premium snack boxes perfect for gifts, offices, and special occasions. Spreading joy one box at a time.
+                </p>
+              </div>
+            </div>
+
             {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-heading-red">
+              <h3 className="text-xl font-bold mb-6 text-logo-green">
                 Quick Links
               </h3>
-              <ul className="space-y-2">
+              <ul className="space-y-3">
                 <li>
                   <a
                     href="#"
-                    className="hover:text-logo-green transition-colors text-sm"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
                   >
                     Home
                   </a>
@@ -1022,7 +1046,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#products-section"
-                    className="hover:text-logo-green transition-colors text-sm"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
                   >
                     Products
                   </a>
@@ -1030,7 +1054,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="hover:text-logo-green transition-colors text-sm"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
                   >
                     Testimonials
                   </a>
@@ -1038,7 +1062,7 @@ export default function Index() {
                 <li>
                   <a
                     href="#"
-                    className="hover:text-logo-green transition-colors text-sm"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
                   >
                     Contact Us
                   </a>
@@ -1046,58 +1070,115 @@ export default function Index() {
               </ul>
             </div>
 
-            {/* Social Media */}
+            {/* Customer Service */}
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-heading-red">
-                Follow Us
+              <h3 className="text-xl font-bold mb-6 text-logo-green">
+                Customer Service
               </h3>
-              <div className="flex gap-4">
-                <a
-                  href="https://tiktok.com/@nut.cravings"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-logo-green transition-colors text-sm"
-                >
-                  TikTok
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-logo-green transition-colors text-sm"
-                >
-                  Instagram
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-logo-green transition-colors text-sm"
-                >
-                  Facebook
-                </a>
-              </div>
+              <ul className="space-y-3">
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
+                  >
+                    Shipping Info
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
+                  >
+                    Returns & Exchanges
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
+                  >
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-logo-green hover:underline hover:underline-offset-4 transition-all duration-300 text-base font-medium"
+                  >
+                    Support
+                  </a>
+                </li>
+              </ul>
             </div>
 
-            {/* Walmart Link */}
+            {/* Order Now */}
             <div>
-              <h3 className="text-lg font-semibold mb-4 text-heading-red">
+              <h3 className="text-xl font-bold mb-6 text-logo-green">
                 Order Now
               </h3>
               <a
                 href={products[0].walmartLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-logo-green hover:bg-green-500 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm font-semibold button-enhanced"
+                className="inline-block bg-gradient-to-r from-logo-green to-green-500 hover:from-green-500 hover:to-emerald-500 text-white px-6 py-3 rounded-2xl transition-all duration-300 text-base font-bold shadow-lg hover:shadow-xl transform hover:scale-105 mb-4"
               >
                 Order from Walmart
               </a>
+              <p className="text-gray-400 text-sm">
+                Fast shipping • Secure payment • Quality guaranteed
+              </p>
             </div>
           </div>
 
-          <div className="border-t border-gray-600 pt-4 text-center">
-            <p className="text-sm">
-              &copy; 2025 Snack Box. All rights reserved.
+          {/* Social Media Row */}
+          <div className="border-t border-gray-700 pt-8 pb-6">
+            <div className="text-center mb-6">
+              <h4 className="text-lg font-bold mb-4 text-white">Follow Us</h4>
+              <div className="flex justify-center gap-4">
+                <a
+                  href="https://tiktok.com/@nut.cravings"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  aria-label="Follow us on TikTok"
+                >
+                  <span className="font-bold text-sm">TT</span>
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  aria-label="Follow us on Instagram"
+                >
+                  <span className="font-bold text-sm">IG</span>
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  aria-label="Follow us on Facebook"
+                >
+                  <span className="font-bold text-sm">FB</span>
+                </a>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl"
+                  aria-label="Subscribe to our YouTube"
+                >
+                  <span className="font-bold text-sm">YT</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="border-t border-gray-700 pt-6 text-center">
+            <p className="text-gray-400 text-sm">
+              &copy; 2025 Gift A Snack. All rights reserved. | Made with ❤️ for snack lovers everywhere
             </p>
           </div>
         </div>
