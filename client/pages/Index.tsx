@@ -1039,11 +1039,11 @@ export default function Index() {
         </button>
       )}
 
-      {/* Modern Clean Modal - Redesigned */}
+      {/* Optimized Modal with Proper Scrolling */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 lg:p-8">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-start lg:items-center justify-center z-50 p-0 lg:p-8">
           <div
-            className="bg-white w-full h-full lg:w-auto lg:h-auto lg:max-w-4xl xl:max-w-5xl lg:max-h-[90vh] overflow-hidden shadow-2xl lg:rounded-3xl relative animate-in fade-in duration-300"
+            className="bg-white w-full h-full lg:w-auto lg:h-auto lg:max-w-4xl xl:max-w-5xl lg:max-h-[95vh] lg:min-h-[600px] shadow-2xl lg:rounded-3xl relative overflow-hidden"
             style={{
               animation: "modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
@@ -1062,14 +1062,15 @@ export default function Index() {
             {/* Mobile swipe indicator */}
             <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mt-2 mb-4 lg:hidden"></div>
 
+            {/* Modal Content - Responsive Layout */}
             <div className="flex flex-col lg:grid lg:grid-cols-2 h-full">
-              {/* Top Section (Mobile) / Left Section (Desktop) - 40% Image Area */}
-              <div className="relative bg-white lg:bg-gray-50 flex items-center justify-center p-4 lg:p-8 h-[40vh] lg:h-auto">
+              {/* Image Section - Flexible Height */}
+              <div className="relative bg-white lg:bg-gray-50 flex items-center justify-center p-4 lg:p-8 min-h-[250px] lg:min-h-[400px]">
                 <div className="relative w-full max-w-md mx-auto">
                   <img
                     src={`${selectedProduct.image}&quality=90`}
                     alt={`${selectedProduct.name} - Detailed view`}
-                    className="w-full h-auto object-contain rounded-2xl shadow-lg animate-in zoom-in duration-500"
+                    className="w-full h-auto object-contain rounded-2xl shadow-lg"
                     loading="lazy"
                     width="400"
                     height="400"
@@ -1079,7 +1080,7 @@ export default function Index() {
                   />
 
                   {/* Discount Badge */}
-                  <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1.5 rounded-xl text-sm font-black shadow-lg animate-in slide-in-from-top-2 duration-700">
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1.5 rounded-xl text-sm font-black shadow-lg">
                     -{(
                       ((parseFloat(
                         calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
@@ -1093,107 +1094,117 @@ export default function Index() {
                 </div>
               </div>
 
-              {/* Bottom Section (Mobile) / Right Section (Desktop) - 60% Content Area */}
-              <div className="flex-1 lg:flex lg:flex-col overflow-hidden">
-                <div className="flex-1 overflow-y-auto p-4 lg:p-8 space-y-6">
-                  {/* Title + Rating */}
-                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-300">
-                    <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-3">
-                      {selectedProduct.shortName || selectedProduct.name}
-                    </h2>
+              {/* Content Section - Scrollable */}
+              <div className="flex-1 flex flex-col lg:min-h-[400px]">
+                {/* Scrollable Content Area */}
+                <div className="flex-1 overflow-y-auto">
+                  <div className="p-4 lg:p-8 space-y-6">
+                    {/* Title + Rating */}
+                    <div>
+                      <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-3">
+                        {selectedProduct.shortName || selectedProduct.name}
+                      </h2>
 
-                    {/* Rating with gold stars */}
-                    {selectedProduct.rating && (
-                      <div className="flex items-center gap-2 mb-4">
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-5 h-5 ${i < selectedProduct.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
-                            />
-                          ))}
+                      {/* Rating with gold stars */}
+                      {selectedProduct.rating && (
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`w-5 h-5 ${i < selectedProduct.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-sm text-gray-600 font-medium">
+                            ({selectedProduct.reviewCount} reviews)
+                          </span>
                         </div>
-                        <span className="text-sm text-gray-600 font-medium">
-                          ({selectedProduct.reviewCount} reviews)
+                      )}
+                    </div>
+
+                    {/* Price Section */}
+                    <div>
+                      <div className="flex items-baseline gap-3 mb-2">
+                        <span className="text-3xl lg:text-4xl font-black text-red-500">
+                          {calculatePricing(selectedProduct.price).salePrice}
+                        </span>
+                        <span className="text-xl lg:text-2xl text-gray-400 line-through">
+                          {calculatePricing(selectedProduct.price).regularPrice}
                         </span>
                       </div>
-                    )}
-                  </div>
-
-                  {/* Price Section */}
-                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-500">
-                    <div className="flex items-baseline gap-3 mb-2">
-                      <span className="text-3xl lg:text-4xl font-black text-red-500">
-                        {calculatePricing(selectedProduct.price).salePrice}
-                      </span>
-                      <span className="text-xl lg:text-2xl text-gray-400 line-through">
-                        {calculatePricing(selectedProduct.price).regularPrice}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
-                        Save $
-                        {(
-                          parseFloat(calculatePricing(selectedProduct.price).regularPrice.replace("$", "")) -
-                          parseFloat(calculatePricing(selectedProduct.price).salePrice.replace("$", ""))
-                        ).toFixed(2)}
-                      </span>
-                      <div className="flex items-center gap-1">
-                        <span className="text-sm">🍪</span>
-                        <span className="text-sm">🍫</span>
-                        <span className="text-sm">🥨</span>
-                        <span className="text-xs text-gray-500 ml-1 font-medium">
-                          {selectedProduct.size}
+                      <div className="flex items-center gap-3">
+                        <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+                          Save $
+                          {(
+                            parseFloat(calculatePricing(selectedProduct.price).regularPrice.replace("$", "")) -
+                            parseFloat(calculatePricing(selectedProduct.price).salePrice.replace("$", ""))
+                          ).toFixed(2)}
                         </span>
+                        <div className="flex items-center gap-1">
+                          <span className="text-sm">🍪</span>
+                          <span className="text-sm">🍫</span>
+                          <span className="text-sm">🥨</span>
+                          <span className="text-xs text-gray-500 ml-1 font-medium">
+                            {selectedProduct.size}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Detailed Description with Icons */}
-                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-700">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">About this product</h3>
-                    {selectedProduct.bulletPoints ? (
-                      <ul className="space-y-3">
-                        {selectedProduct.bulletPoints.slice(0, 4).map((point, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <CheckCircle className="w-3 h-3 text-green-600" />
-                            </div>
-                            <span className="text-sm lg:text-base text-gray-700 leading-relaxed">
-                              {point}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-gray-700 leading-relaxed">
-                        {selectedProduct.description}
-                      </p>
-                    )}
-                  </div>
+                    {/* Detailed Description with Icons */}
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-4">About this product</h3>
+                      {selectedProduct.bulletPoints ? (
+                        <ul className="space-y-3">
+                          {selectedProduct.bulletPoints.map((point, index) => (
+                            <li key={index} className="flex items-start gap-3">
+                              <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <CheckCircle className="w-3 h-3 text-green-600" />
+                              </div>
+                              <span className="text-sm lg:text-base text-gray-700 leading-relaxed">
+                                {point}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-gray-700 leading-relaxed">
+                          {selectedProduct.description}
+                        </p>
+                      )}
+                    </div>
 
-                  {/* What's Included */}
-                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-900">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">What's included</h3>
-                    <div className="grid grid-cols-1 gap-2">
-                      <div className="flex items-center gap-3">
-                        <Package className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-gray-700">Premium variety of snacks ({selectedProduct.size})</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <Gift className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-gray-700">Beautiful gift packaging</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-gray-700">Greeting card included</span>
+                    {/* What's Included */}
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-3">What's included</h3>
+                      <div className="grid grid-cols-1 gap-3">
+                        <div className="flex items-center gap-3">
+                          <Package className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-700">Premium variety of snacks ({selectedProduct.size})</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Gift className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-700">Beautiful gift packaging</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-700">Greeting card included</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <Truck className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-700">Fast shipping across the US</span>
+                        </div>
                       </div>
                     </div>
+
+                    {/* Additional spacing before button */}
+                    <div className="pb-4"></div>
                   </div>
                 </div>
 
-                {/* Buy Button - Large, colorful, full-width */}
-                <div className="p-4 lg:p-8 pt-0 animate-in slide-in-from-bottom-4 duration-500 delay-1100">
+                {/* Sticky Buy Button Section - Always Visible */}
+                <div className="bg-white border-t border-gray-100 p-4 lg:p-6">
                   <a
                     href={selectedProduct.walmartLink}
                     target="_blank"
@@ -1211,18 +1222,21 @@ export default function Index() {
                   </a>
 
                   {/* Trust indicators */}
-                  <div className="flex items-center justify-center gap-6 mt-4 text-sm text-gray-600">
+                  <div className="flex items-center justify-center gap-4 lg:gap-6 mt-4 text-xs lg:text-sm text-gray-600">
                     <div className="flex items-center gap-1">
-                      <CheckCircle className="w-4 h-4 text-green-600" />
-                      Fast Shipping
+                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
+                      <span className="hidden sm:inline">Fast Shipping</span>
+                      <span className="sm:hidden">Shipping</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <CheckCircle className="w-4 h-4 text-green-600" />
-                      Secure Payment
+                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
+                      <span className="hidden sm:inline">Secure Payment</span>
+                      <span className="sm:hidden">Secure</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <CheckCircle className="w-4 h-4 text-green-600" />
-                      Easy Returns
+                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-green-600" />
+                      <span className="hidden sm:inline">Easy Returns</span>
+                      <span className="sm:hidden">Returns</span>
                     </div>
                   </div>
                 </div>
