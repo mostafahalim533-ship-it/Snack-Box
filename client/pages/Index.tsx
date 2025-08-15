@@ -1039,341 +1039,192 @@ export default function Index() {
         </button>
       )}
 
-      {/* Enhanced Product Modal - Redesigned */}
+      {/* Modern Clean Modal - Redesigned */}
       {selectedProduct && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-end lg:items-center justify-center z-50 fade-in">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 lg:p-8">
           <div
-            className="bg-white rounded-t-3xl lg:rounded-3xl w-full lg:max-w-5xl xl:max-w-6xl max-h-[95vh] lg:max-h-[85vh] overflow-hidden shadow-2xl slide-up border-t-2 lg:border border-logo-green/20 relative"
+            className="bg-white w-full h-full lg:w-auto lg:h-auto lg:max-w-4xl xl:max-w-5xl lg:max-h-[90vh] overflow-hidden shadow-2xl lg:rounded-3xl relative animate-in fade-in duration-300"
             style={{
-              animation: "slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+              animation: "modalSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            {/* Modal Header - Streamlined */}
-            <div className="bg-gradient-to-r from-logo-green/5 to-logo-green/10 p-3 lg:p-4 border-b border-logo-green/20 relative">
-              {/* Mobile swipe indicator */}
-              <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-2 lg:hidden"></div>
+            {/* Close Button - Mobile & Desktop */}
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-4 right-4 z-20 w-10 h-10 bg-white/90 backdrop-blur-sm hover:bg-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 group"
+            >
+              <X className="w-5 h-5 text-gray-600 group-hover:text-gray-800 group-hover:scale-110 transition-all" />
+            </button>
 
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-logo-green rounded-full flex items-center justify-center shadow-lg">
-                    <Package className="w-4 h-4 text-white" />
-                  </div>
-                  <h3 className="text-lg font-bold text-heading-red">
-                    Product Details
-                  </h3>
-                </div>
-                <button
-                  onClick={() => setSelectedProduct(null)}
-                  className="p-2 hover:bg-red-50 hover:text-red-500 rounded-full transition-all duration-200 group min-h-[40px] min-w-[40px] flex items-center justify-center shadow-md hover:shadow-lg"
-                >
-                  <X className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                </button>
-              </div>
-            </div>
+            {/* Mobile swipe indicator */}
+            <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mt-2 mb-4 lg:hidden"></div>
 
-            {/* Content Area - Optimized Layout */}
-            <div className="flex flex-col lg:grid lg:grid-cols-12 h-full overflow-hidden">
-              {/* Top Section - Always Visible (Mobile) / Left Section (Desktop) */}
-              <div className="lg:col-span-6 flex flex-col">
-                {/* Product Image - Further Reduced for Better Balance */}
-                <div className="relative flex-shrink-0">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 h-full">
+              {/* Top Section (Mobile) / Left Section (Desktop) - 40% Image Area */}
+              <div className="relative bg-white lg:bg-gray-50 flex items-center justify-center p-4 lg:p-8 h-[40vh] lg:h-auto">
+                <div className="relative w-full max-w-md mx-auto">
                   <img
                     src={`${selectedProduct.image}&quality=90`}
-                    alt={`${selectedProduct.name} - Detailed view of premium snack variety box contents`}
-                    className="w-full h-40 sm:h-48 lg:h-52 xl:h-56 object-cover rounded-lg lg:rounded-none shadow-lg lg:shadow-none"
+                    alt={`${selectedProduct.name} - Detailed view`}
+                    className="w-full h-auto object-contain rounded-2xl shadow-lg animate-in zoom-in duration-500"
                     loading="lazy"
-                    width="600"
-                    height="280"
+                    width="400"
+                    height="400"
+                    style={{
+                      animation: "imageZoomIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both",
+                    }}
                   />
-                  <div className="absolute top-3 right-3 bg-blue-600 p-2 rounded-lg shadow-lg">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F79b7dfd5cb0f4ca0b96e836c27c6ef40%2F9eae62feb04c48cb96ee02dd2f9b0679?format=webp&width=100&quality=90"
-                      alt="Premium quality guarantee"
-                      className="h-4 w-4 filter brightness-0 invert"
-                      loading="lazy"
-                      width="16"
-                      height="16"
-                    />
-                  </div>
-                  {/* Premium overlay effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent lg:hidden"></div>
-                </div>
 
-                {/* Desktop: Additional Image Info */}
-                <div className="hidden lg:block p-3 bg-gradient-to-b from-gray-50 to-white border-b border-gray-200">
-                  <div className="flex items-center justify-between text-sm text-gray-600">
-                    <span className="flex items-center gap-2">
-                      <Eye className="w-4 h-4" />
-                      High-quality product image
-                    </span>
-                    <span className="bg-logo-green/10 text-logo-green px-2 py-1 rounded-full text-xs font-semibold">
-                      Premium Quality
-                    </span>
+                  {/* Discount Badge */}
+                  <div className="absolute -top-2 -right-2 bg-red-500 text-white px-3 py-1.5 rounded-xl text-sm font-black shadow-lg animate-in slide-in-from-top-2 duration-700">
+                    -{(
+                      ((parseFloat(
+                        calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
+                      ) - parseFloat(
+                        calculatePricing(selectedProduct.price).salePrice.replace("$", "")
+                      )) / parseFloat(
+                        calculatePricing(selectedProduct.price).regularPrice.replace("$", "")
+                      )) * 100
+                    ).toFixed(0)}%
                   </div>
                 </div>
               </div>
 
-              {/* Right Section - Product Info & CTA */}
-              <div className="lg:col-span-6 flex flex-col">
-                {/* Top Product Info - Always Visible */}
-                <div className="flex-shrink-0 p-4 lg:p-6 bg-white border-b lg:border-b-0 lg:bg-gradient-to-b lg:from-white lg:to-gray-50">
-                  {/* Product Name */}
-                  <div className="mb-3">
-                    <h4 className="text-lg lg:text-xl xl:text-2xl font-bold text-heading-red leading-tight">
-                      {selectedProduct.name}
-                    </h4>
+              {/* Bottom Section (Mobile) / Right Section (Desktop) - 60% Content Area */}
+              <div className="flex-1 lg:flex lg:flex-col overflow-hidden">
+                <div className="flex-1 overflow-y-auto p-4 lg:p-8 space-y-6">
+                  {/* Title + Rating */}
+                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-300">
+                    <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-gray-900 leading-tight mb-3">
+                      {selectedProduct.shortName || selectedProduct.name}
+                    </h2>
+
+                    {/* Rating with gold stars */}
+                    {selectedProduct.rating && (
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`w-5 h-5 ${i < selectedProduct.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-sm text-gray-600 font-medium">
+                          ({selectedProduct.reviewCount} reviews)
+                        </span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Ratings */}
-                  {selectedProduct.rating && (
-                    <div className="mb-4">
-                      <StarRating
-                        rating={selectedProduct.rating}
-                        reviewCount={selectedProduct.reviewCount}
-                      />
-                    </div>
-                  )}
-
-                  {/* Size & Price Section - Redesigned */}
-                  <div className="bg-gradient-to-r from-orange-50 via-red-50 to-orange-50 p-4 lg:p-5 rounded-2xl mb-4 lg:mb-6 border-2 border-orange-100 shadow-lg">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-bold text-gray-700 flex items-center gap-2">
-                        <Package className="w-4 h-4 text-logo-green" />
-                        Size:
-                      </span>
-                      <div className="flex items-center gap-2">
-                        <span className="bg-logo-green text-white font-bold px-3 py-1.5 rounded-full text-sm shadow-md">
-                          {selectedProduct.size}
-                        </span>
-                        {selectedProduct.outOfStock && (
-                          <span className="text-xs text-red-600 font-bold bg-red-100 px-3 py-1.5 rounded-full border-2 border-red-200">
-                            Out of Stock
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-2xl lg:text-3xl xl:text-4xl font-black text-heading-red">
+                  {/* Price Section */}
+                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-500">
+                    <div className="flex items-baseline gap-3 mb-2">
+                      <span className="text-3xl lg:text-4xl font-black text-red-500">
                         {calculatePricing(selectedProduct.price).salePrice}
                       </span>
-                      <span className="text-lg lg:text-xl text-gray-500 line-through">
+                      <span className="text-xl lg:text-2xl text-gray-400 line-through">
                         {calculatePricing(selectedProduct.price).regularPrice}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <span className="bg-red-600 text-white px-3 py-1.5 rounded-full text-xs font-bold shadow-md">
-                        SAVE{" "}
+                      <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">
+                        Save $
                         {(
-                          ((parseFloat(
-                            calculatePricing(
-                              selectedProduct.price,
-                            ).regularPrice.replace("$", ""),
-                          ) -
-                            parseFloat(
-                              calculatePricing(
-                                selectedProduct.price,
-                              ).salePrice.replace("$", ""),
-                            )) /
-                            parseFloat(
-                              calculatePricing(
-                                selectedProduct.price,
-                              ).regularPrice.replace("$", ""),
-                            )) *
-                          100
-                        ).toFixed(0)}
-                        %
+                          parseFloat(calculatePricing(selectedProduct.price).regularPrice.replace("$", "")) -
+                          parseFloat(calculatePricing(selectedProduct.price).salePrice.replace("$", ""))
+                        ).toFixed(2)}
                       </span>
-                      <span className="text-sm text-red-600 font-bold flex items-center gap-1">
-                        <Zap className="w-3 h-3" />
-                        Limited time!
-                      </span>
+                      <div className="flex items-center gap-1">
+                        <span className="text-sm">🍪</span>
+                        <span className="text-sm">🍫</span>
+                        <span className="text-sm">🥨</span>
+                        <span className="text-xs text-gray-500 ml-1 font-medium">
+                          {selectedProduct.size}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Enhanced Buy Button - Walmart Style */}
-                  <div className="mb-4 lg:mb-6">
-                    <a
-                      href={selectedProduct.walmartLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-black py-4 lg:py-5 text-center rounded-2xl text-lg lg:text-xl xl:text-2xl transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3 relative overflow-hidden border-2 border-blue-500 group"
-                    >
-                      {/* Walmart spark effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-blue-300/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                      {/* Shopping cart icon */}
-                      <div className="relative z-10 bg-white/20 p-2 rounded-full shadow-lg">
-                        <ShoppingCart className="w-6 h-6 lg:w-7 lg:h-7" />
-                      </div>
-
-                      <div className="relative z-10 flex flex-col">
-                        <span className="font-black tracking-wider text-lg lg:text-xl">
-                          BUY NOW ON
-                        </span>
-                        <span className="font-black tracking-wider text-yellow-300 text-xl lg:text-2xl">
-                          WALMART
-                        </span>
-                      </div>
-
-                      {/* Price reminder */}
-                      <div className="relative z-10 bg-yellow-400 text-blue-800 px-3 py-2 rounded-full text-base lg:text-lg font-black shadow-lg">
-                        {calculatePricing(selectedProduct.price).salePrice}
-                      </div>
-
-                      <ExternalLink className="w-5 h-5 lg:w-6 lg:h-6 relative z-10" />
-                    </a>
-
-                    {/* Trust indicators below main CTA */}
-                    <div className="flex items-center justify-center gap-4 lg:gap-6 mt-3 text-xs lg:text-sm text-gray-600">
-                      <div className="flex items-center gap-1">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-blue-600" />
-                        Fast Shipping
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-blue-600" />
-                        Secure Payment
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-blue-600" />
-                        Easy Returns
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom Section - Scrollable Product Details */}
-                <div className="flex-1 overflow-y-auto p-4 lg:p-6 bg-gray-50">
-                  {/* About this item - Bullet Points */}
-                  <div className="bg-white p-4 lg:p-5 rounded-2xl mb-4 border border-gray-200 shadow-lg">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Sparkles className="w-5 h-5 text-logo-green" />
-                      <h5 className="font-bold text-heading-red text-lg">
-                        About this item
-                      </h5>
-                    </div>
+                  {/* Detailed Description with Icons */}
+                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-700">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">About this product</h3>
                     {selectedProduct.bulletPoints ? (
-                      <ul className="space-y-3 text-sm lg:text-base text-gray-700">
-                        {selectedProduct.bulletPoints.map((point, index) => (
+                      <ul className="space-y-3">
+                        {selectedProduct.bulletPoints.slice(0, 4).map((point, index) => (
                           <li key={index} className="flex items-start gap-3">
-                            <span className="text-logo-green font-bold text-xl leading-none mt-0.5 flex-shrink-0">
-                              •
+                            <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                              <CheckCircle className="w-3 h-3 text-green-600" />
+                            </div>
+                            <span className="text-sm lg:text-base text-gray-700 leading-relaxed">
+                              {point}
                             </span>
-                            <span className="leading-relaxed">{point}</span>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <p className="text-gray-700 leading-relaxed text-sm lg:text-base">
+                      <p className="text-gray-700 leading-relaxed">
                         {selectedProduct.description}
                       </p>
                     )}
                   </div>
 
-                  {/* Key Features */}
-                  <div className="bg-logo-green/5 p-4 lg:p-5 rounded-2xl mb-4 border-2 border-logo-green/20 shadow-lg">
-                    <div className="flex items-center gap-2 mb-4">
-                      <CheckCircle className="w-5 h-5 text-logo-green" />
-                      <h5 className="font-bold text-heading-red text-lg">
-                        What's Included
-                      </h5>
-                    </div>
-                    <div className="grid grid-cols-1 gap-3 text-sm lg:text-base text-gray-600">
+                  {/* What's Included */}
+                  <div className="animate-in slide-in-from-bottom-4 duration-500 delay-900">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">What's included</h3>
+                    <div className="grid grid-cols-1 gap-2">
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        Premium variety of snacks ({selectedProduct.size})
+                        <Package className="w-4 h-4 text-green-600" />
+                        <span className="text-sm text-gray-700">Premium variety of snacks ({selectedProduct.size})</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        Beautiful gift packaging
+                        <Gift className="w-4 h-4 text-green-600" />
+                        <span className="text-sm text-gray-700">Beautiful gift packaging</span>
                       </div>
                       <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        Greeting card included
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        Individually wrapped snacks
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <span className="text-sm text-gray-700">Greeting card included</span>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Shipping & Delivery - Always Visible */}
-                  <div className="bg-white p-4 lg:p-5 rounded-2xl border border-gray-200 shadow-lg">
-                    <div className="flex items-center gap-2 mb-4">
-                      <Truck className="w-5 h-5 text-logo-green" />
-                      <h5 className="font-bold text-heading-red text-lg">
-                        Shipping & Delivery
-                      </h5>
+                {/* Buy Button - Large, colorful, full-width */}
+                <div className="p-4 lg:p-8 pt-0 animate-in slide-in-from-bottom-4 duration-500 delay-1100">
+                  <a
+                    href={selectedProduct.walmartLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 lg:py-5 text-center rounded-2xl text-lg lg:text-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                  >
+                    <ShoppingCart className="w-6 h-6" />
+                    <div className="flex flex-col">
+                      <span className="font-black">BUY NOW ON</span>
+                      <span className="font-black text-yellow-300">WALMART</span>
                     </div>
-                    <div className="space-y-3 text-sm lg:text-base text-gray-600">
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        Fast shipping across the US
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        Secure packaging guarantee
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        Order tracking available
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-4 h-4 text-logo-green flex-shrink-0" />
-                        30-day satisfaction guarantee
-                      </div>
+                    <div className="bg-yellow-400 text-blue-800 px-3 py-1.5 rounded-full text-base font-black">
+                      {calculatePricing(selectedProduct.price).salePrice}
                     </div>
-                  </div>
+                  </a>
 
-                  {/* Final Trust Indicators */}
-                  <div className="flex items-center justify-center gap-4 lg:gap-6 mt-6 pt-4 border-t border-gray-200 text-xs lg:text-sm text-gray-600">
+                  {/* Trust indicators */}
+                  <div className="flex items-center justify-center gap-6 mt-4 text-sm text-gray-600">
                     <div className="flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-logo-green" />
-                      Satisfaction Guaranteed
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                      Fast Shipping
                     </div>
                     <div className="flex items-center gap-1">
-                      <CheckCircle className="w-3 h-3 lg:w-4 lg:h-4 text-logo-green" />
+                      <CheckCircle className="w-4 h-4 text-green-600" />
                       Secure Payment
                     </div>
+                    <div className="flex items-center gap-1">
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                      Easy Returns
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Enhanced Mobile Sticky Buy Button */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-white border-t-2 border-blue-200 lg:hidden shadow-2xl">
-              <a
-                href={selectedProduct.walmartLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-black py-4 text-center rounded-2xl text-lg transition-all duration-300 shadow-lg active:scale-[0.98] flex items-center justify-center gap-3 border-2 border-blue-500"
-              >
-                <div className="bg-white/20 p-1.5 rounded-full shadow-md">
-                  <ShoppingCart className="w-5 h-5" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-black tracking-wide">BUY NOW ON</span>
-                  <span className="font-black tracking-wide text-yellow-300">
-                    WALMART
-                  </span>
-                </div>
-                <div className="bg-yellow-400 text-blue-800 px-2 py-1 rounded-full text-base font-black">
-                  {calculatePricing(selectedProduct.price).salePrice}
-                </div>
-              </a>
-
-              {/* Mobile trust indicators */}
-              <div className="flex items-center justify-center gap-4 mt-2 text-xs text-gray-600">
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3 text-blue-600" />
-                  <span>Secure Checkout</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <CheckCircle className="w-3 h-3 text-blue-600" />
-                  <span>Fast Shipping</span>
                 </div>
               </div>
             </div>
