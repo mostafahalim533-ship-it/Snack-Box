@@ -663,35 +663,35 @@ export default function Index() {
               return (
                 <div
                   key={product.id}
-                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:scale-[1.02] cursor-pointer"
+                  className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-[1.02] cursor-pointer border border-gray-100"
                 >
-                  {/* Product Image - 70% of card area */}
-                  <div className="relative h-[240px] lg:h-[280px] overflow-hidden">
+                  {/* Product Image - 70% of card area with 16px border radius */}
+                  <div className="relative h-[200px] lg:h-[220px] overflow-hidden rounded-t-2xl bg-gray-50">
                     <img
                       src={`${product.image}&quality=90`}
                       alt={`${product.name} - Premium snack variety box with ${product.size} assorted treats perfect for gifting`}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                       width="320"
-                      height="280"
+                      height="220"
                     />
 
-                    {/* Discount Badge */}
-                    <div className="absolute top-3 left-3 bg-red-500 text-white px-2.5 py-1 rounded-full text-xs font-black shadow-lg">
+                    {/* Discount Badge - corner placement */}
+                    <div className="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded-xl text-xs font-black shadow-lg">
                       -{savingsPercent}%
                     </div>
 
                     {/* Popular Badge */}
                     {index === 1 && (
-                      <div className="absolute top-3 right-3 bg-orange-500 text-white px-2.5 py-1 rounded-full text-xs font-bold shadow-lg">
+                      <div className="absolute top-3 right-3 bg-orange-500 text-white px-2 py-1 rounded-xl text-xs font-bold shadow-lg">
                         🔥 Popular
                       </div>
                     )}
 
                     {/* Out of Stock Overlay */}
                     {product.outOfStock && (
-                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                        <div className="bg-white px-3 py-1.5 rounded-full">
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-t-2xl">
+                        <div className="bg-white px-3 py-1.5 rounded-xl">
                           <span className="text-red-600 font-bold text-xs">
                             Out of Stock
                           </span>
@@ -700,27 +700,27 @@ export default function Index() {
                     )}
                   </div>
 
-                  {/* Content Area - 30% of card area */}
-                  <div className="p-4">
-                    {/* Product Title */}
-                    <h3 className="font-bold text-gray-900 mb-2 leading-tight text-sm lg:text-base line-clamp-2">
+                  {/* Content Area - 30% of card area, clean and minimal */}
+                  <div className="p-3 lg:p-4 space-y-2 lg:space-y-3">
+                    {/* Product Title - Bold, clean typography */}
+                    <h3 className="font-bold text-gray-900 leading-tight text-sm lg:text-base line-clamp-2 min-h-[36px] lg:min-h-[40px]">
                       {product.shortName || product.name}
                     </h3>
 
-                    {/* Box Contents Icons */}
-                    <div className="flex items-center gap-1 mb-2">
-                      <span className="text-sm">🍪</span>
-                      <span className="text-sm">🍫</span>
-                      <span className="text-sm">🥨</span>
-                      <span className="text-xs text-gray-500 ml-2">
+                    {/* Box Contents Icons - playful visual */}
+                    <div className="flex items-center gap-1">
+                      <span className="text-sm lg:text-base">🍪</span>
+                      <span className="text-sm lg:text-base">🍫</span>
+                      <span className="text-sm lg:text-base">🥨</span>
+                      <span className="text-xs text-gray-500 ml-2 font-medium">
                         {product.size}
                       </span>
                     </div>
 
-                    {/* Price Section - Prominent */}
-                    <div className="mb-3">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xl lg:text-2xl font-black text-red-500">
+                    {/* Price Section - Prominent and bold */}
+                    <div className="space-y-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-lg lg:text-xl font-black text-red-500">
                           {pricing.salePrice}
                         </span>
                         <span className="text-sm lg:text-base text-gray-400 line-through">
@@ -736,25 +736,32 @@ export default function Index() {
                       </div>
                     </div>
 
-                    {/* Ratings */}
+                    {/* Ratings - compact */}
                     {product.rating && (
-                      <div className="mb-3">
-                        <StarRating
-                          rating={product.rating}
-                          reviewCount={product.reviewCount}
-                        />
+                      <div className="flex items-center gap-1">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`w-3 h-3 lg:w-3.5 lg:h-3.5 ${i < product.rating ? "fill-yellow-400 text-yellow-400" : "text-gray-300"}`}
+                            />
+                          ))}
+                        </div>
+                        <span className="text-xs text-gray-600 ml-1">
+                          ({product.reviewCount})
+                        </span>
                       </div>
                     )}
 
-                    {/* View Details Button - Vibrant */}
+                    {/* View Details Button - Vibrant, full-width */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         setSelectedProduct(product);
                       }}
-                      className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-2.5 lg:py-3 rounded-xl text-sm lg:text-base flex items-center justify-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98]"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 lg:py-3 rounded-xl text-xs lg:text-sm transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
                     >
-                      <Eye className="w-4 h-4 lg:w-5 lg:h-5" />
+                      <Eye className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
                       View Details
                     </button>
                   </div>
